@@ -15,15 +15,21 @@ export const fetchPokemons = async (setPokemons, searchText) => {
       data.results.map(async (pokemon) => {
         const res = await fetch(pokemon.url);
         const details = await res.json();
+
+        const id = pokemon.url.split("/").filter(Boolean).pop();
+
         return {
+          id,
           name: pokemon.name,
           image: details.sprites.front_default,
         };
       }),
     );
 
-    const filteredPokemons = pokemonDetails.filter((pokemon) =>
-      pokemon.name.toLowerCase().includes(searchText.toLowerCase()),
+    const filteredPokemons = pokemonDetails.filter(
+      (pokemon) =>
+        pokemon.name.toLowerCase().includes(searchText.toLowerCase()) ||
+        pokemon.id === searchText,
     );
 
     setPokemons(filteredPokemons);

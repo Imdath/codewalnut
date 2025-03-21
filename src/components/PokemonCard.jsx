@@ -1,22 +1,30 @@
-import Image from "next/image";
 import React from "react";
+import { pokemonCardStyles } from "@/app/styles";
+import Image from "next/image";
 
+/**
+ * PokemonCard Component
+ *
+ * Renders a card displaying a Pokémon's image and name.
+ *
+ * @component
+ * @param {Object} props - Component props
+ * @param {Object} props.pokemon - Pokémon data
+ * @param {string} props.pokemon.name - Pokémon's name
+ * @param {string} props.pokemon.image - Pokémon's image URL
+ * @returns {JSX.Element} A styled Pokémon card
+ */
 const PokemonCard = ({ pokemon }) => {
   return (
-    <div
-      key={pokemon.name}
-      className="flex flex-col items-center bg-white p-4 rounded-lg shadow-md border border-gray-300"
-    >
+    <div className={pokemonCardStyles.container}>
       <Image
         src={pokemon.image}
         alt={pokemon.name}
-        className="w-24 h-24 object-contain"
+        className={pokemonCardStyles.image}
         width={100}
         height={100}
       />
-      <p className="mt-2 text-lg font-medium capitalize text-gray-900">
-        {pokemon.name}
-      </p>
+      <p className={pokemonCardStyles.name}>{pokemon.name}</p>
     </div>
   );
 };
