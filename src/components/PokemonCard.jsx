@@ -25,6 +25,14 @@ const PokemonCard = ({ pokemon }) => {
         height={100}
       />
       <p className={pokemonCardStyles.name}>{pokemon.name}</p>
+      <div className={pokemonCardStyles.typesContainer}>
+        <p className={pokemonCardStyles.typeLabel}>Type: </p>
+        {pokemon.types.map((type, index) => (
+          <span key={type} className={pokemonCardStyles.typeBadge}>
+            {type}
+          </span>
+        ))}
+      </div>
     </div>
   );
 };

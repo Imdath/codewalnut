@@ -18,10 +18,13 @@ export const fetchPokemons = async (setPokemons, searchText) => {
 
         const id = pokemon.url.split("/").filter(Boolean).pop();
 
+        const types = details.types.map((typeInfo) => typeInfo.type.name);
+
         return {
           id,
           name: pokemon.name,
           image: details.sprites.front_default,
+          types,
         };
       }),
     );
