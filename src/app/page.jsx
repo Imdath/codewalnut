@@ -40,6 +40,7 @@ export default function Home() {
         />
       </header>
 
+      {/* Loader */}
       {loading && <Loader />}
 
       {/* Pokemon Cards Container */}

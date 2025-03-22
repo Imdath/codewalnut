@@ -14,7 +14,7 @@ export const searchInputStyles =
 
 export const layoutStyles = {
   container:
-    "grid grid-rows-[auto_1fr_20px] items-start justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]",
+    "grid grid-rows-[auto_1fr_20px] items-start justify-items-center min-w-[300px] min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]",
   header: "w-full flex justify-center",
   main: "flex flex-col gap-6 items-center justify-center p-8",
   cardGrid:

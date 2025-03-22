@@ -7,11 +7,14 @@ export const handleSearch = (e, setSearch) => {
 export const fetchPokemons = async (setPokemons, searchText, setLoading) => {
   try {
     setLoading(true);
+
+    // Fetching the pokemon details to get the names
     const result = await fetch(
       "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0",
     );
     const data = await result.json();
 
+    // Fetching the pokemon details to get the images
     const pokemonDetails = await Promise.all(
       data.results.map(async (pokemon) => {
         const res = await fetch(pokemon.url);
@@ -21,6 +24,7 @@ export const fetchPokemons = async (setPokemons, searchText, setLoading) => {
 
         const types = details.types.map((typeInfo) => typeInfo.type.name);
 
+        // Transforming our required data from the apis
         return {
           id,
           name: pokemon.name,
