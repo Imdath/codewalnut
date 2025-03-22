@@ -1,3 +1,4 @@
+import { localKeys } from "@/app/localKeys";
 import { searchInputStyles } from "@/app/styles";
 
 /**
@@ -14,14 +15,14 @@ import { searchInputStyles } from "@/app/styles";
 const SearchInput = ({ value, onChange }) => {
   return (
     <input
-      type="search"
-      name="search"
+      type={localKeys.search}
+      name={localKeys.search}
       className={searchInputStyles}
       value={value}
       onChange={onChange}
-      aria-label="Search"
-      placeholder="Search Pokemon by name or id"
-      autoComplete="off"
+      aria-label={localKeys.searchPascalCase}
+      placeholder={localKeys.searchPokemonPlaceholder}
+      autoComplete={localKeys.off}
     />
   );
 };

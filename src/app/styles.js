@@ -20,3 +20,9 @@ export const layoutStyles = {
   cardGrid:
     "grid grid-cols-1 min-[500px]:grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6",
 };
+
+export const loaderStyles = {
+  container: "flex justify-center items-center w-full my-6",
+  spinner:
+    "w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin",
+};
