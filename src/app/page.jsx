@@ -5,6 +5,8 @@ import { fetchPokemons, handleSearch } from "./functions";
 import PokemonCard from "@/components/PokemonCard";
 import SearchInput from "@/components/SearchInput";
 import { layoutStyles } from "./styles";
+import Loader from "@/components/Loader";
+import { localKeys } from "./localKeys";
 
 /**
  * Home Component
@@ -18,9 +20,14 @@ import { layoutStyles } from "./styles";
 export default function Home() {
   const [search, setSearch] = useState("");
   const [pokemons, setPokemons] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    fetchPokemons(setPokemons, search);
+    // Minimized api calls while searching pokemons
+    const delay = setTimeout(() => {
+      fetchPokemons(setPokemons, search, setLoading);
+    }, 500);
+    return () => clearTimeout(delay);
   }, [search]);
 
   return (
@@ -33,14 +40,21 @@ export default function Home() {
         />
       </header>
 
+      {loading && <Loader />}
+
       {/* Pokemon Cards Container */}
-      <main className={layoutStyles.main}>
-        <div className={layoutStyles.cardGrid}>
-          {pokemons?.map((pokemon) => {
-            return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
-          })}
-        </div>
-      </main>
+      {!loading && pokemons?.length > 0 ? (
+        <main className={layoutStyles.main}>
+          <div className={layoutStyles.cardGrid}>
+            {pokemons?.map((pokemon) => {
+              return <PokemonCard key={pokemon.name} pokemon={pokemon} />;
+            })}
+          </div>
+        </main>
+      ) : (
+        !loading &&
+        pokemons?.length === 0 && <h2>{localKeys.noPokemonFound}</h2>
+      )}
     </div>
   );
 }

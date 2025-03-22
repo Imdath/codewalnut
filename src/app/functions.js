@@ -4,8 +4,9 @@ export const handleSearch = (e, setSearch) => {
 };
 
 // Fetching pokemon data and transforming to an array of objects each with name and image of the pokemon
-export const fetchPokemons = async (setPokemons, searchText) => {
+export const fetchPokemons = async (setPokemons, searchText, setLoading) => {
   try {
+    setLoading(true);
     const result = await fetch(
       "https://pokeapi.co/api/v2/pokemon?limit=50&offset=0",
     );
@@ -29,6 +30,7 @@ export const fetchPokemons = async (setPokemons, searchText) => {
       }),
     );
 
+    // Filtering data based on our search text incase of name or id of the pokemon
     const filteredPokemons = pokemonDetails.filter(
       (pokemon) =>
         pokemon.name.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -38,5 +40,7 @@ export const fetchPokemons = async (setPokemons, searchText) => {
     setPokemons(filteredPokemons);
   } catch (error) {
     console.log(error);
+  } finally {
+    setLoading(false);
   }
 };
