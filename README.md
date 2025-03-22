@@ -19,8 +19,8 @@ It allows users to **search for Pokemon by name or ID** and displays basic detai
 ### 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/CW-Codewalnut/codewalnut-front-end-tech-test.git
-cd codewalnut-front-end-tech-test
+git clone https://github.com/Imdath/codewalnut.git
+cd codewalnut
 ```
 
 ### 2️⃣ Install Dependencies
